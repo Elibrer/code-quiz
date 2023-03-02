@@ -55,9 +55,7 @@ header h1 {
 
 }
 
-.hide-card {
-    display: none;
-}
+
 
 main {
     margin-top:2%;
@@ -69,30 +67,48 @@ main {
 }
 
 
-.intro, .quiz, .timer-card, .score-card {
+#intro, #quiz, .timer-card, .score-card {
+    
     height: 400px;
     padding: 20px;
     background-color: var(--mediumbg);
     border: 1px solid #eceff1;
     border-radius: 8px;
     box-shadow: #3c4043 0 1px 2px 0, #3c404326 0 2px 4px 3px;
+    opacity: 1;
+    transition: all 1s linear;
 }
 
 .timer-card, .score-card {
     width: 300px;
 }
 
-.start, #quiz {
+#intro, #quiz {
     width: 700px;
 }
 
 
-
-
-#time {
-    color: var(--darker);
+.timer-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.timer-card h1, .timer-card h2 {
+    color: var(--darker);
+    padding: 10%;
+}
+
+
+
+.hide-card {
+    display: none;
+    transition: all 1s linear;
+    opacity: 0;
+
+
+}
 
 
 
