@@ -55,39 +55,39 @@ header h1 {
 
 }
 
+.hide-card {
+    display: none;
+}
 
 main {
     margin-top:2%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     padding: 1%;
 }
 
 
-.timer-card, .score-card {
-    display: block;
+.intro, .quiz, .timer-card, .score-card {
+    height: 400px;
+    padding: 20px;
     background-color: var(--mediumbg);
     border: 1px solid #eceff1;
     border-radius: 8px;
     box-shadow: #3c4043 0 1px 2px 0, #3c404326 0 2px 4px 3px;
-    padding: 20px;
-    width: 300px;
-    height: 400px;
 }
 
-.game {
-    display: block;
-    width: 600px;
-    height: 400px;
-    background-color: var(--mediumbg);
-    border: 1px solid #eceff1;
-    border-radius: 8px;
-    box-shadow: #3c4043 0 1px 2px 0, #3c404326 0 2px 4px 3px;
-    padding: 20px;
-    margin: 0 1% 0;
+.timer-card, .score-card {
+    width: 300px;
 }
+
+.start, #quiz {
+    width: 700px;
+}
+
+
+
 
 #time {
     color: var(--darker);
@@ -96,9 +96,6 @@ main {
 
 
 
-.hide-area {
-    display:none;
-}
 
 
 
