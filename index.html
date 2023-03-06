@@ -11,7 +11,7 @@
 <body>
 
     
-    <header><h1>Code Quiz!</h1></header>
+    <header><a id="restart"><h1>Code Quiz!</h1></a></header>
 
     <main>
         <section class="timer-card">
@@ -21,12 +21,17 @@
 
         
         <section id="intro">
-            <div></div>
+            
+            <h1>Coding Quiz!</h1>
+            <p>Answer each question by pressing the correct answer. Be aware, however,
+                 that any wrong choices will give a 10s time penalty! Good luck :-)
+            </p>
             <button id="start-button">Start</button>
         </section>
 
         <section id="quiz" class="hide-card">
-            <h1>HELLO</h1>
+            <h3 id="quiz-questions"></h3>
+            <div id="quiz-answers"></div>
         </section>
 
         <section class="score-card">
@@ -35,6 +40,7 @@
 
     <article>
         
+        <button id="test-button">TEST FUNCTIONS</button>
 
 
 
