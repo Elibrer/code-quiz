@@ -25,32 +25,46 @@ var submitted = false;
 
 var quizFinished = false;
 
+
+//Questions for the quiz in array form
+
 var quizQuestions = [
 {
     question: "Choose the correct syntax: ",
     choices: ["var myFunction = function{insert-function-here};", "function myFunction(insert-function-name){insert-function-here};", "myFucntion function(insert-function-name){insert-function-here};"],
     answer: "function myFunction(insert-function-name){insert-function-here};",
-    correctIndex: 1,
 }, 
 {
     question: "If you type the following code in the console window, what result will you get? \n3 > 2 > 1 === false;",
     choices: ["True", "False"],
     answer: "True",
-    correctIndex: 0,
-}, 
+},
 {
     question: "Choose the incorrect semantic HTML element: ",
     choices: ["place", "aside", "section", "article"],
     answer: "place",
-    correctIndex: 0,
-}
+},
+{
+    question: "What does CSS stands for?",
+    choices: ["Casing Style Sheet", "Collating Style Sheet", "Cascading Style Sheets", "Cascade Style Sheets"],
+    answer: "Cascading Style Sheets",
+},
+{
+    question: "JavaScript File Has An Extension of:",
+    choices: [".java", ".javascript", ".xml", ".js"],
+    answer: ".js",
+},
+{
+    question: "Which Of The Dialog Box Display a Message And a Data Entry Field?",
+    choices: ["Alert()", "Prompt()", "Confirm()", "Msg()"],
+    answer: "Prompt()",
+},
 ];
 
 
 
-
-
 //START BUTTON
+
 function begin() {
 
     console.log(quizIntroID);
@@ -70,7 +84,9 @@ function begin() {
 
 }
 
+
 //TIMER
+
 function timeCountdown() {
     time--
     countdownTimerID.textContent = time;
@@ -79,7 +95,6 @@ function timeCountdown() {
         stopQuiz();
     }
 }
-
 
 
 //INIT GAME
@@ -98,11 +113,10 @@ function init() {
 }
 
 
-
-
 //RESTART/RELOAD PAGE
 
 function restart() {    
+
     if (quizFinished === false) {
     var premRestart = confirm("Are you sure you want to restart?");
 
@@ -118,7 +132,6 @@ function restart() {
 //DISPLAY QUESTIONS
 function showQuestions() {
 
-    
     var currentQuestion = quizQuestions[qIndex];
     quizQuestionTitle.textContent = currentQuestion.question;
 
@@ -135,8 +148,10 @@ function showQuestions() {
         choiceBtn.textContent = i + 1 + '- ' + choice;
         quizChoices.appendChild(choiceBtn);
     }
-
 };
+
+
+//Goes to next question based on previous choice click
 
 function answerPress(event) {
     var answerBtns = event.target;
@@ -166,23 +181,15 @@ function answerPress(event) {
     if (time <= 0 || qIndex === quizQuestions.length) {
         //console.log("STOP QUIZ");
         stopQuiz();
-
     } else {
         //console.log("NEXT Q");
         showQuestions();
     }
-
-    
-
-
 }
 
 
-
-
-
-
 //TIME SUBTRACTION
+
 function subtractTime() {
     time = time - 10;
     //console.log(time);
@@ -193,9 +200,7 @@ function subtractTime() {
 }
 
 
-
-//SCORE TABLE
-
+//SCORE TABLE update and refresh on submit button click
 
 function enterInitials() {
     var initials = initialsID.value.trim();
@@ -203,7 +208,7 @@ function enterInitials() {
 
     if (initials === "") {
         return;
-    } else if (submitted === false) {
+    } else {
     
         var latestScore = {
             score: time,
@@ -215,20 +220,17 @@ function enterInitials() {
         window.localStorage.setItem('highscores', JSON.stringify(highscores));
     }
 
-    submitted = true;
-
     endScreenID.setAttribute("class", "hide-card");
     restartQuizID.removeAttribute("class", "hide-card");
     
     window.localStorage.getItem("highscores", JSON.stringify(highscores));
-
 
     highscores.sort(function (a, b) {
         //Sorts the highscores by highest number
         return b.score - a.score;
     });
 
-    console.log(highscores);
+    // console.log(highscores);
     highscoreListID.innerHTML = '';
 
     for (i = 0; i < highscores.length; i++) {
@@ -241,20 +243,18 @@ function enterInitials() {
         
         highscoreList.textContent = highscoreTable;
 
-        console.log(highscoreTable);
+        // console.log(highscoreTable);
         highscoreListID.appendChild(highscoreList);
-
     }
 }
 
 
 //Clear the scores from local storage
+
 function clearScores() {
     window.localStorage.removeItem('highscores');
     window.location.reload();
     highscoreListID.innerHTML = '';
-
-
 }
 
 
@@ -272,7 +272,8 @@ function stopQuiz() {
 }
 
 
-//Initialise the script
+//Initialise the script on startup
+
 init();
 enterInitials();
 
