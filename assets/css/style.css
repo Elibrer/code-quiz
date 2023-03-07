@@ -180,17 +180,20 @@ main {
 
 
 li:nth-child(odd) {
-    background-color: var(--mediumdark);
-    color: var(--light);
+    background-color: var(--light);
+    color: var(--dark);
 
 }
 li {
-    background-color: var(--light);
-    color: var(--darkbg);
+    background-color: var(--dark);
+    color: var(--light);
 }
 li:first-child {
     background-color: var(--highscore);
 }
+li:first-child:before {
+    content: "Top Score: ";
+  }
 
 /* #test-button {
     width: 100%;

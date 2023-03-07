@@ -1,6 +1,10 @@
 
 
 
+
+## Button click on enter press
+https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+
 ## Sorry object by number
 https://stackoverflow.com/questions/1069666/sorting-object-property-by-values
 

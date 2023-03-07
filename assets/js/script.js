@@ -23,6 +23,7 @@ var qIndex = 0;
 
 var submitted = false;
 
+var quizStarted = false;
 var quizFinished = false;
 
 
@@ -110,6 +111,10 @@ function init() {
     qIndex = 0;
     submitted = false;
     initialsID.value = "";
+    quizStarted = false;
+
+    
+
 }
 
 
@@ -155,7 +160,6 @@ function showQuestions() {
 
 function answerPress(event) {
     var answerBtns = event.target;
-
    // console.log(answerBtns);
 
     resultText.removeAttribute("class", "hide-card");
@@ -180,7 +184,7 @@ function answerPress(event) {
 
     if (time <= 0 || qIndex === quizQuestions.length) {
         //console.log("STOP QUIZ");
-        stopQuiz();
+        stopQuiz(); 
     } else {
         //console.log("NEXT Q");
         showQuestions();
@@ -193,61 +197,61 @@ function answerPress(event) {
 function subtractTime() {
     time = time - 10;
     //console.log(time);
-    if (time <= 0) {
+    if (time <= 15) {
         time = 0;
     }
     
 }
 
 
+
+
 //SCORE TABLE update and refresh on submit button click
 
 function enterInitials() {
     var initials = initialsID.value.trim();
-    var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
 
-    if (initials === "") {
-        return;
-    } else {
-    
+    if (initials !== "") {
+        var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+
         var latestScore = {
             score: time,
             initials: initials,
         };
 
         highscores.push(latestScore);
-
         window.localStorage.setItem('highscores', JSON.stringify(highscores));
-    }
-
-    endScreenID.setAttribute("class", "hide-card");
-    restartQuizID.removeAttribute("class", "hide-card");
-    
-    window.localStorage.getItem("highscores", JSON.stringify(highscores));
-
-    highscores.sort(function (a, b) {
-        //Sorts the highscores by highest number
-        return b.score - a.score;
-    });
-
-    // console.log(highscores);
-    highscoreListID.innerHTML = '';
-
-    for (i = 0; i < highscores.length; i++) {
-
-        var highscoreList = document.createElement("li");
-
-        var highscoreTable = highscores[i]["initials"] + "  -  " + highscores[i]["score"];
-
-        var highscoreList = document.createElement("li");
         
-        highscoreList.textContent = highscoreTable;
+        //Hide end screen, show restart screen
+        endScreenID.setAttribute("class", "hide-card");
+        restartQuizID.removeAttribute("class", "hide-card");
+        
+        //Sorts the highscores by highest number
+        highscores.sort(function (a, b) {
+            return b.score - a.score;
+        });
 
-        // console.log(highscoreTable);
-        highscoreListID.appendChild(highscoreList);
+        // console.log(highscores);
+        highscoreListID.innerHTML = '';
+
+        for (i = 0; i < highscores.length; i++) {
+
+
+            var highscoreTable = highscores[i]["initials"] + "  -  " + highscores[i]["score"];
+
+            var highscoreList = document.createElement("li");
+            var lineBreak = document.createElement("hr");
+            
+                
+            highscoreList.textContent = highscoreTable;
+
+            // console.log(highscoreTable);
+            highscoreListID.appendChild(highscoreList);
+            highscoreListID.appendChild(lineBreak);
+        }
+
     }
 }
-
 
 //Clear the scores from local storage
 
@@ -262,6 +266,9 @@ function clearScores() {
 
 function stopQuiz() {
     clearInterval(timerCount);
+    if (time < 0) {
+        time = 0;
+    }
     countdownTimerID.textContent = time;
 
     quizCardID.setAttribute("class", "hide-card")
@@ -279,15 +286,43 @@ enterInitials();
 
 
 
+
+
+//BUTTONS AND EVENTS --------------->
+
 //Begin the quiz button
 startBtnID.addEventListener("click", begin);
+
+
+//Begins quiz if enter is pressed
+document.addEventListener("keyup", function(event) {
+    if (event.key === 'Enter' && quizStarted === false) {
+        begin();
+        quizStarted = true;
+    }
+});
+
+
 //Restart the program button
 restartBtnID.addEventListener("click", restart);
 //Submit initials and score to highscore table button
 submitScoreBtn.addEventListener("click", enterInitials);
+
+
+//If user presses enter to submit
+
+initialsID.addEventListener("keyup", function(event) {
+    if (event.key === 'Enter') {
+        enterInitials();
+    }
+    else {
+        return;
+    }
+});
+
+
 //Clear the local storage button
 clearScoresBtn.addEventListener("click", clearScores);
 //Button press for choices
 quizChoices.onclick = answerPress;
-
 
