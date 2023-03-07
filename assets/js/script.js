@@ -95,8 +95,6 @@ function init() {
     qIndex = 0;
     submitted = false;
     initialsID.value = "";
-
-
 }
 
 
@@ -147,7 +145,6 @@ function answerPress(event) {
 
     resultText.removeAttribute("class", "hide-card");
 
-
     if (answerBtns.value === quizQuestions[qIndex].answer) {
         resultText.textContent = "Correct!";
         setTimeout(function() {
@@ -165,8 +162,6 @@ function answerPress(event) {
     }
 
     qIndex++;
-
-
 
     if (time <= 0 || qIndex === quizQuestions.length) {
         //console.log("STOP QUIZ");
@@ -227,29 +222,39 @@ function enterInitials() {
     
     window.localStorage.getItem("highscores", JSON.stringify(highscores));
 
+
+    highscores.sort(function (a, b) {
+        //Sorts the highscores by highest number
+        return b.score - a.score;
+    });
+
+    console.log(highscores);
+    highscoreListID.innerHTML = '';
+
     for (i = 0; i < highscores.length; i++) {
+
         var highscoreList = document.createElement("li");
 
-
-
         var highscoreTable = highscores[i]["initials"] + "  -  " + highscores[i]["score"];
-        highscoreList.textContent = highscoreTable;
 
         var highscoreList = document.createElement("li");
         
-        console.log(highscoreTable);
+        highscoreList.textContent = highscoreTable;
 
-        highscoreList.appendChild(highscoreListID);
+        console.log(highscoreTable);
+        highscoreListID.appendChild(highscoreList);
 
     }
-
-
-
 }
 
+
+//Clear the scores from local storage
 function clearScores() {
     window.localStorage.removeItem('highscores');
     window.location.reload();
+    highscoreListID.innerHTML = '';
+
+
 }
 
 
@@ -269,6 +274,8 @@ function stopQuiz() {
 
 //Initialise the script
 init();
+enterInitials();
+
 
 
 //Begin the quiz button
