@@ -11,7 +11,7 @@
 <body>
 
     
-    <header><a id="restart"><h1>Code Quiz!</h1></a></header>
+    <header><a><h1>Code Quiz!</h1></a></header>
 
     <main>
         <section class="timer-card">
@@ -32,20 +32,32 @@
         <section id="quiz" class="hide-card">
             <h3 id="quiz-questions"></h3>
             <div id="quiz-answers"></div>
+            <p id="result"></p>
         </section>
+
+        <section id="end-quiz" class="hide-card">
+            <h4 id="end-title">Quiz Finished!</h4>
+            <p>Your final score was: </p>
+            <div id="final-score"></div>
+            <p>Enter your initials here: <input type="text" id="initials" maxlength="3" minlength="1"/></p>
+            <button id="submit-btn">Submit Score</button>
+        </section>
+
+        <section id="restart-quiz" class="hide-card">
+            <button id="clear-scores">Clear scores?</button>
+            <button id="restart">Restart?</button>
+            
+        </section>
+
+
 
         <section class="score-card">
+            <h4 id="end-title">Highscores: </h4>
+            <ul id="highscores-list">
+
+            </ul>
         </section>
     </main>
-
-    <article>
-        
-        <button id="test-button">TEST FUNCTIONS</button>
-
-
-
-    </article>
-
     
 
     <script src="./assets/js/script.js"></script>
