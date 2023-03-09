@@ -2,9 +2,9 @@
 An interactive online code quiz to test your skills.
 
 ![Languages Badge](https://img.shields.io/badge/Languages-3-blue)
-![JS Badge](https://img.shields.io/badge/JavaScript-67.3%25-yellow)
-![CSS Badge](https://img.shields.io/badge/CSS-22.7%25-blueviolet)
-![HTML Badge](https://img.shields.io/badge/HTML-10%25-red)
+![JS Badge](https://img.shields.io/badge/JavaScript-57.4%25-yellow)
+![CSS Badge](https://img.shields.io/badge/CSS-27.7%25-blueviolet)
+![HTML Badge](https://img.shields.io/badge/HTML-14.9%25-red)
 
 
 ## Deployment link
