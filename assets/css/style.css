@@ -205,7 +205,10 @@ li:first-child:before {
     outline: 2px solid red;
 } */
 
-
+#result {
+    padding-top: 40px;
+    font-size: 30px;
+}
 
 
 @media screen and (max-width: 768px) {

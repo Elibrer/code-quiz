@@ -168,7 +168,7 @@ function answerPress(event) {
         resultText.textContent = "Correct!";
         setTimeout(function() {
             resultText.setAttribute("class", "hide-card");
-        },1000);
+        },1500);
 
         //console.log("Correct!");
     } else {
@@ -177,14 +177,17 @@ function answerPress(event) {
         //console.log("Wrong!");
         setTimeout(function() {
             resultText.setAttribute("class", "hide-card");
-        },1000);
+        },1500);
     }
 
     qIndex++;
 
     if (time <= 0 || qIndex === quizQuestions.length) {
-        //console.log("STOP QUIZ");
-        stopQuiz(); 
+        setTimeout(function() {
+            //console.log("STOP QUIZ");
+            stopQuiz(); 
+        },1000);
+
     } else {
         //console.log("NEXT Q");
         showQuestions();
