@@ -9,7 +9,7 @@ An interactive online code quiz to test your skills.
 
 ## Deployment link
 
-https://elibrer.github.io/Elibrer/code-quiz
+https://elibrer.github.io/code-quiz/
 
 ## Description
 
